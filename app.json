@@ -1,4 +1,32 @@
 {
-  "name": "eathomefood",
-  "displayName": "eathomefood"
+  "expo": {
+    "name": "eathomefood",
+    "slug": "eathomefood",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FFC529",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.org.eathomefood"
+    },
+    "android": {
+      "package": "com.eathomefood",
+      "adaptiveIcon": {
+        "backgroundColor": "#FFC529",
+        "softwareKeyboardLayoutMode": "resize",
+        "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+      }
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "EatHomeFood uses your location to show restaurants that deliver to you."
+        }
+      ]
+    ]
+  }
 }

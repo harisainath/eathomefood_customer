@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.eathomefood'
+    namespace 'com.eathomefood.customer'
     defaultConfig {
-        applicationId 'com.eathomefood'
+        applicationId 'com.eathomefood.customer'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

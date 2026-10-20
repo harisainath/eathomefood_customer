@@ -1,4 +1,4 @@
-package com.eathomefood
+package com.eathomefood.customer
 
 import android.os.Build
 import android.os.Bundle

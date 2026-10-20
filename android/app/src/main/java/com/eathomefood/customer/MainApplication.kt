@@ -1,4 +1,4 @@
-package com.eathomefood
+package com.eathomefood.customer
 
 import android.app.Application
 import android.content.res.Configuration

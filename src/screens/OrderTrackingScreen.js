@@ -55,6 +55,12 @@ export default function OrderTrackingScreen({ route }) {
         <Text style={s.heroBig}>
           {stopped ? (order.status === 'rejected' ? 'The restaurant could not take this order' : 'Order cancelled') : STEPS[current]?.title}
         </Text>
+        {stopped && order.cancelled_by === 'restaurant' && order.cancel_reason ? (
+          <Text style={s.heroNote}>Reason: {order.cancel_reason}</Text>
+        ) : null}
+        {order.status === 'preparing' && order.prep_time_min ? (
+          <Text style={s.heroNote}>Ready in about {order.prep_time_min} minutes</Text>
+        ) : null}
         <StatusBadge status={order.status} />
       </View>
 
@@ -116,6 +122,7 @@ export default function OrderTrackingScreen({ route }) {
 const s = StyleSheet.create({
   hero: { backgroundColor: colors.primary, borderRadius: radius.lg, padding: 20 },
   heroSmall: { color: colors.ink, opacity: 0.7, fontWeight: '600' },
+  heroNote: { color: colors.ink, fontWeight: '700', marginBottom: 10 },
   heroBig: { color: colors.ink, fontSize: 24, fontWeight: '900', marginVertical: 10, letterSpacing: -0.3 },
   step: { flexDirection: 'row' },
   dot: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, borderColor: colors.border, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },

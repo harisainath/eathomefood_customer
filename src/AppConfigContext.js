@@ -12,6 +12,7 @@ const DEFAULTS = {
   delivery_fee: 30,
   tax_rate: 0.05,
   terms_url: null,
+  customer_tracking_interval_sec: 10,
 };
 
 const AppConfigContext = createContext({ config: DEFAULTS, refresh: () => {} });

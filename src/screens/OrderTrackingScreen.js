@@ -5,6 +5,7 @@ import api, { errorMessage } from '../api';
 import { usePolling } from '../usePolling';
 import { colors, radius, rupee } from '../theme';
 import { Button, Card, EmptyState, Loader, StatusBadge } from '../components/ui';
+import LiveTrackingMap from '../components/LiveTrackingMap';
 
 const FINAL_STATUSES = ['delivered', 'cancelled', 'rejected'];
 
@@ -64,6 +65,20 @@ export default function OrderTrackingScreen({ route }) {
         <StatusBadge status={order.status} />
       </View>
 
+      {/* Live rider location once a delivery partner is assigned */}
+      {['preparing', 'ready', 'picked_up'].includes(order.status) && order.delivery_partner && (
+        <LiveTrackingMap orderId={order.id} status={order.status} />
+      )}
+
+      {/* Code the customer gives the rider at the door */}
+      {order.delivery_otp && ['preparing', 'ready', 'picked_up'].includes(order.status) && (
+        <View style={s.otpCard} accessible accessibilityLabel={`Delivery code ${order.delivery_otp.split('').join(' ')}`}>
+          <Text style={s.otpLabel}>Delivery code</Text>
+          <Text style={s.otpValue}>{order.delivery_otp}</Text>
+          <Text style={s.otpHint}>Share this code with your delivery partner only when you receive your order.</Text>
+        </View>
+      )}
+
       {!stopped && (
         <Card style={{ marginTop: 14 }}>
           {STEPS.map((st, i) => {
@@ -122,6 +137,10 @@ export default function OrderTrackingScreen({ route }) {
 const s = StyleSheet.create({
   hero: { backgroundColor: colors.primary, borderRadius: radius.lg, padding: 20 },
   heroSmall: { color: colors.ink, opacity: 0.7, fontWeight: '600' },
+  otpCard: { backgroundColor: colors.ink, borderRadius: radius.lg, padding: 16, marginTop: 14, alignItems: 'center' },
+  otpLabel: { color: '#fff', opacity: 0.8, fontWeight: '700' },
+  otpValue: { color: colors.primary, fontSize: 36, fontWeight: '900', letterSpacing: 10, marginVertical: 4 },
+  otpHint: { color: '#fff', opacity: 0.75, fontSize: 12, textAlign: 'center' },
   heroNote: { color: colors.ink, fontWeight: '700', marginBottom: 10 },
   heroBig: { color: colors.ink, fontSize: 24, fontWeight: '900', marginVertical: 10, letterSpacing: -0.3 },
   step: { flexDirection: 'row' },

@@ -1,30 +1,38 @@
 {
   "expo": {
-    "name": "eathomefood",
-    "slug": "eathomefood",
+    "name": "EatHomeFood",
+    "slug": "eathomefood-customer",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "backgroundColor": "#FFC529",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.org.eathomefood"
+      "bundleIdentifier": "com.eathomefood.customer"
     },
     "android": {
-      "package": "com.eathomefood",
+      "package": "com.eathomefood.customer",
       "adaptiveIcon": {
-        "backgroundColor": "#FFC529",
-        "softwareKeyboardLayoutMode": "resize",
-        "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
-      }
+        "backgroundColor": "#FFC529"
+      },
+      "softwareKeyboardLayoutMode": "resize",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "plugins": [
       "expo-secure-store",
-      "expo-font",
       [
         "expo-location",
         {
           "locationWhenInUsePermission": "EatHomeFood uses your location to show restaurants that deliver to you."
+        }
+      ],
+      [
+        "react-native-maps",
+        {
+          "androidGoogleMapsApiKey": "AIzaSyAGfdbaAW-2m4SgehbGuLTRtjWFECf9pXw"
         }
       ]
     ]

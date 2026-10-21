@@ -25,6 +25,7 @@ import AccountScreen from './src/screens/AccountScreen';
 import EditProfileScreen from './src/screens/EditProfileScreen';
 import AddressesScreen from './src/screens/AddressesScreen';
 import AddAddressScreen from './src/screens/AddAddressScreen';
+import DeleteAccountScreen from './src/screens/DeleteAccountScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -85,6 +86,7 @@ function Root() {
               options={({ route }) => ({ title: route.params?.selectMode ? 'Choose delivery location' : 'Saved addresses' })} />
             <Stack.Screen name="AddAddress" component={AddAddressScreen} options={{ title: 'Add address' }} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} options={{ title: 'Edit profile' }} />
+            <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: 'Delete account' }} />
             <Stack.Screen name="Terms" component={TermsScreen} options={{ title: 'Terms & Conditions' }} />
           </>
         )}

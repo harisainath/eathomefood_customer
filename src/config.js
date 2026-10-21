@@ -1,6 +1,8 @@
-// Development server (Android emulator reaches your computer at 10.0.2.2).
-// On a real phone use your computer's Wi-Fi IP, e.g. 'http://192.168.1.5:8000/api'.
-const DEV_API_URL = 'http://10.0.2.2:8000/api';
+import { Platform } from 'react-native';
+
+// Development server: the Android emulator reaches your computer at 10.0.2.2, the iPhone simulator at localhost.
+// On a real phone use your computer's Wi-Fi IP instead, e.g. 'http://192.168.1.5:8000/api'.
+const DEV_API_URL = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api' : 'http://localhost:8000/api';
 
 // Your live server. Release builds use this automatically.
 const PROD_API_URL = 'https://api.yourdomain.com/api';

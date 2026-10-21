@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import api from '../api';
 import { useAppConfig } from '../AppConfigContext';
@@ -37,7 +37,7 @@ export default function LiveTrackingMap({ orderId, status }) {
   return (
     <View style={s.card}>
       <View style={s.mapWrap}>
-        <MapView ref={map} provider={PROVIDER_GOOGLE} style={StyleSheet.absoluteFill} toolbarEnabled={false}
+        <MapView ref={map} provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined} style={StyleSheet.absoluteFill} toolbarEnabled={false}
           initialRegion={{ ...points[0], latitudeDelta: 0.03, longitudeDelta: 0.03 }}>
           <Marker coordinate={{ latitude: Number(rider.lat), longitude: Number(rider.lng) }} title={rider.name} description={rider.vehicle}>
             <View style={s.riderPin}><Text style={s.pinText}>🛵</Text></View>

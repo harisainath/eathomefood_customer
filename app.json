@@ -8,7 +8,8 @@
     "backgroundColor": "#FFC529",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.eathomefood.customer"
+      "bundleIdentifier": "com.eathomefood.customer",
+      "config": { "usesNonExemptEncryption": false }
     },
     "android": {
       "package": "com.eathomefood.customer",

@@ -71,13 +71,19 @@ export function AuthProvider({ children }) {
     return data;
   };
 
+  /** Permanently delete the account (customers send { confirm: 'DELETE' }, partners { password }). */
+  const deleteAccount = async (payload) => {
+    await api.post('/me/delete', payload);
+    await clearSession();
+  };
+
   const logout = async () => {
     try { await api.post('/auth/logout'); } catch {}
     await clearSession();
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, sendOtp, verifyOtp, completeRegistration, updateProfile, logout }}>
+    <AuthContext.Provider value={{ user, loading, sendOtp, verifyOtp, completeRegistration, updateProfile, logout, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );

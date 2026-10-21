@@ -30,6 +30,7 @@ export default function AccountScreen({ navigation }) {
         <MenuRow icon="document-text-outline" title="Terms & Conditions" onPress={() => navigation.navigate('Terms')} />
 
         <Button title="Log out" variant="danger" onPress={logout} style={{ marginTop: 24 }} />
+        <Text style={s.delete} onPress={() => navigation.navigate('DeleteAccount')} accessibilityRole="button">Delete my account</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -56,5 +57,6 @@ const s = StyleSheet.create({
   muted: { color: colors.ink, opacity: 0.7, marginTop: 2 },
   row: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 16, borderRadius: radius.md, marginBottom: 10, borderWidth: 1, borderColor: colors.border },
   rowText: { fontSize: 15, fontWeight: '700', color: colors.text },
+  delete: { textAlign: 'center', color: colors.muted, marginTop: 18, textDecorationLine: 'underline' },
   rowSub: { fontSize: 12, color: colors.muted, marginTop: 2 },
 });

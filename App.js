@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,8 @@ import { AuthProvider, useAuth } from './src/AuthContext';
 import { LocationProvider } from './src/LocationContext';
 import { CartProvider } from './src/CartContext';
 import { colors } from './src/theme';
+import { navigationRef } from './src/navigation';
+import { listenForNotificationTaps, registerForPushNotifications } from './src/push';
 import { Loader } from './src/components/ui';
 import LoginScreen from './src/screens/LoginScreen';
 import CompleteProfileScreen from './src/screens/CompleteProfileScreen';
@@ -51,10 +53,17 @@ function Tabs() {
 
 function Root() {
   const { user, loading } = useAuth();
+
+  // Register this phone for order updates and announcements once the customer is signed up
+  useEffect(() => {
+    if (user?.profile_completed) registerForPushNotifications();
+  }, [user?.id, user?.profile_completed]);
+  useEffect(() => listenForNotificationTaps(), []);
+
   if (loading) return <Loader />;
 
   return (
-    <NavigationContainer theme={navTheme}>
+    <NavigationContainer theme={navTheme} ref={navigationRef}>
       <Stack.Navigator screenOptions={{ headerTintColor: colors.text, headerShadowVisible: false, headerTitleStyle: { fontWeight: '800' } }}>
         {!user ? (
           // 1. Mobile number + OTP (works for both new and existing customers)
